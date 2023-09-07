@@ -1,0 +1,143 @@
+---
+title: Types
+---
+
+The type definitions that follow strongly mimic [Figma's](https://www.figma.com/developers/api#files) existing data structures. 
+
+It's the the best possible data structure for a node-based design system.
+
+Plus, it'll be familiar and compatible with existing Figma Apps.
+
+## Document
+
+This is a document. You can see `Pages` on the left and `Variables` on the right.
+
+A `Document` can have many `Pages`, this is so you can group your templates (ie. `Page`'s) in one place and also share `Variables` across them.
+
+<br/>
+<Image
+  src="/images/docs/document-screenshot-captioned.png"
+  width="718"
+  height="404"
+  alt="Image"
+/>
+
+## Page
+
+A `Page` is just one `Frame` and can be any size.
+
+<br/>
+<Image
+  src="/images/docs/document-page-circled.png"
+  width="718"
+  height="404"
+  alt="Image"
+/>
+
+## Frame
+
+A `Frame` is a node itself. Special only because it can hold children.
+
+I've zoomed in a bit and hovered over the frame so you can see by the dashed lines.
+
+Inside this `Frame` are `Rectangle`'s, `Vector`'s, and `Text`'s.
+
+<br/>
+<Image
+  src="/images/docs/types-frame.png"
+  width="718"
+  height="404"
+  alt="Image"
+/>
+<br/><br/>
+# Properties
+
+A `Vector` is the core node of Rescene (or shape/layer  in the tool you use)
+
+## Vector
+
+| Property | Type | Description |
+| :--- | :----: | ----: |
+| width    |   Number    |     The width in px. |
+| height    |   Number    |     The height in px. |
+| opacity    |   Number    |     The opacity 0-1 (default 1) |
+| rotation    |   Number    |     The rotation 0-2π (default 0) |
+| strokeWeight    |   Number    |     The stroke weight in px. (default 0) |
+| fills    |   Paint[]    |     An array of `Paint` objects. |
+| strokes    |   Paint[]    |     An array of `Paint` objects. |
+
+## Rectangle
+
+I've selected a `Rectangle` here. Since it's selected you seen the selection indicator on the editor UI as well as the right settings panel which shows layer properties.
+
+<br/>
+<Image
+  src="/images/docs/docs-rect-example.png"
+  width="718"
+  height="404"
+  alt="Image"
+/>
+<br/>
+Uniquely customizable to a `Rectangle` is
+| Property | Type | Description |
+| :--- | :----: | ----: |
+| cornerRadius    |   Number    |     The corner radius in px. |
+
+### Fun Fact
+Images are just a `Rectangle` with a `fills[x]` type `IMAGE`. Any shape can hold images in `fills` like this.
+
+<br/>
+<Image
+  src="/images/docs/fyi-rect-zoomed-image.png"
+  width="718"
+  height="404"
+  alt="Image"
+/>
+
+See! We added another `Paint` to `fills`: #68D89B. Fills are rendered from bottom to top just like in Figma.
+<br/>
+<Image
+  src="/images/docs/fyi-rect-image-and-fill.png"
+  width="718"
+  height="404"
+  alt="Image"
+/>
+
+
+## Ellipse
+
+`Ellipse` has one unique property.
+| Property | Type | Description |
+| :--- | :----: | ----: |
+| arcData    |   ArcData    |     An ArcData object. |
+
+## Polygon
+
+Same as `Vector`
+
+## ArcData
+
+| Property | Type | Description |
+| :--- | :----: | ----: |
+| startingAngle    |   Number    |     Start of the sweep in radians. |
+| endingAngle    |   Number    |     End of the sweep in radians. |
+| innerRadius    |   Number    |     Inner radius value between 0 and 1. |
+
+## Paint
+
+| Property | Type | Description |
+| :--- | :----: | ----: |
+| type    |   String    |     One of 'IMAGE' or 'SOLID' |
+| color    |   Number    |     A `Color` object. |
+| imageUrl    |   String    |     The URL of the image. Can be a data url. The url **must** be accessible to our servers (ie public) |
+| scaleMode    |   String    |     One of 'FILL', 'FIT', 'STRETCH', 'TILE' support eventually |
+| imageTransform    |   String    |     A 2D affine transform matrix ex [[1,0,0],[0,1,0]] |
+
+## Color
+
+| Property | Type | Description |
+| :--- | :----: | ----: |
+| r    |   Number    |     The RED value between 0-1 |
+| g    |   Number    |     The GREEN value between 0-1 |
+| b    |   Number    |     The BLUE value between 0-1 |
+| a    |   Number    |     The ALPHA value between 0-1 |

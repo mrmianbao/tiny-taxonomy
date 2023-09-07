@@ -1,0 +1,32 @@
+---
+title: Authentication
+---
+
+Learn how to make *authenticated* requests to the Rescene API.
+
+## API Keys
+
+An API key gives the user access to the account it was created from.
+
+### Generate an API Key
+
+1. Login to your Rescene account.
+2. Navigate to the [settings page](https://rescene.ai/settings) page.
+3. Located the 'API Keys' section.
+4. Click 'New API Key'
+
+The new API Key should appear immediately. Copy this for the next steps.
+
+### Using the API Key
+
+You can now use the token to make requests to the Rescene API. You can do so by passing the token to the API in the X-Rescene-Token header of your request.
+
+Here is an example in Node.js
+
+```ts {2} title="node.js example" /appDir: true/
+import superagent from "superagent"
+
+const response = superagent
+    .set('X-Rescene-Token', API_KEY)
+    .get(BASE_URL)
+```

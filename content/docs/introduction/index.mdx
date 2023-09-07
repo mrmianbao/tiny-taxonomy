@@ -1,0 +1,68 @@
+---
+title: Introduction
+---
+
+⚙️ Rescene is a **headless design tool**.
+
+Our mission is to enable programmatic design by uniting the many design file formats into one *open-source* format based on [Figma's](https://www.figma.com/developers/api#files) existing data structures.
+
+## Basics
+
+There is the **Rescene App** and the **Rescene API**.
+
+### The Rescene App
+
+The Rescene App is a minimal editor very similar to Figma. It exists for you to import your designs, making them renderable on-demand via our API. You may also group them into Documents and Pages, assign variables that map to layer properties.
+
+[https://rescene.ai](https://rescene.ai)
+
+### The Rescene API
+
+The Rescene API enables you to render any design (page) as a `svg`,`png`,`jpg`, or `pdf` on-demand with full customizability.
+
+```ts {2} title="node.js example" /appDir: true/
+import superagent from "superagent"
+
+const response = superagent
+    .set('X-Rescene-Token', API_KEY)
+    .post(BASE_URL)
+    .send({
+        doc: "document_id",
+        page: "page_id",
+        // Variable values can map to many elements in a design
+        variables: {
+            bg_color: "#decade",
+            title: "30% Off",
+            image: "..some image url"
+        },
+        // If you're spicy you can override anything.
+        overrides: {
+            "node_id": {
+                strokeWeight: 10,
+                strokes: [
+                    type: "SOLID",
+                    color: {
+                        r: 1,
+                        g: 0.3,
+                        b: 0.4,
+                        a: 1
+                    }
+                ],
+                fills: [
+                    type: "SOLID",
+                    color: {
+                        r: 0.2,
+                        g: 0.3,
+                        b: 0.8,
+                        a: 1
+                    }
+                ]
+            }
+        }
+    })
+
+// Do something with the image
+const imageBuffer = Buffer.from(response.body)
+```
+
+

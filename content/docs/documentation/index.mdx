@@ -1,0 +1,120 @@
+---
+title: Figma Elements Documentation
+---
+
+# Document
+
+The `Document` is the root node of any Figma file and always corresponds to the canvas. It contains references to other objects and lays out the structure of the design.
+
+## Properties
+
+- **id**: Unique identifier for the document.
+- **name**: Name of the document.
+- **type**: Node type (for document, this is always "DOCUMENT").
+- **children**: Array of child nodes (canvases or pages).
+
+# Page (Canvas)
+
+A `Page` represents a distinct design workspace or layout within a Figma file. Each Figma file can have multiple pages.
+
+## Properties
+
+- **id**: Unique identifier for the page.
+- **name**: Name of the page.
+- **type**: Node type (for page, this is "CANVAS").
+- **children**: Array of child nodes, like frames or groups.
+
+# Frame
+
+Frames can be top-level designs or nested within another frame or group. They can define layouts, components, or instances.
+
+## Properties
+
+- **id**: Identifier for the frame.
+- **name**: Name of the frame.
+- **type**: Node type (for frame, it's "FRAME").
+- **children**: Child nodes contained within the frame.
+- ... other specific frame properties ...
+
+# Group
+
+A `Group` clusters multiple nodes, treating them as a single unit.
+
+## Properties
+
+- **id**: Identifier for the group.
+- **name**: Name of the group.
+- **type**: Node type (for group, it's "GROUP").
+- **children**: Child nodes contained within the group.
+
+# Vector
+
+Represents a generic vector shape in a design.
+
+## Properties
+
+- **id**: Identifier for the vector.
+- **name**: Name of the vector.
+- **type**: Node type (for vector, it's "VECTOR").
+- ... other specific vector properties ...
+
+# Ellipse
+
+Represents ellipse or circle shapes in a design.
+
+## Properties
+
+- **id**: Identifier for the ellipse.
+- **name**: Name of the ellipse.
+- **type**: Node type (for ellipse, it's "ELLIPSE").
+- ... other specific ellipse properties ...
+
+# Polygon (RegularPolygon)
+
+Represents various polygon shapes like triangles, pentagons, etc.
+
+## Properties
+
+- **id**: Identifier for the polygon.
+- **name**: Name of the polygon.
+- **type**: Node type (for polygon, it's "REGULAR_POLYGON").
+- ... other specific polygon properties ...
+
+# Rectangle
+
+Represents rectangle or square shapes in a design.
+
+## Properties
+
+- **id**: Identifier for the rectangle.
+- **name**: Name of the rectangle.
+- **type**: Node type (for rectangle, it's "RECTANGLE").
+- ... other specific rectangle properties ...
+
+# Text
+
+Represents text objects in a design.
+
+## Properties
+
+- **id**: Identifier for the text.
+- **name**: Name of the text.
+- **type**: Node type (for text, it's "TEXT").
+- **characters**: The text content.
+- ... other specific text properties ...
+
+# Paint (PaintStyle)
+
+Defines design styles related to coloring and painting in a design.
+
+## Properties
+
+- **id**: Identifier for the paint style.
+- **name**: Name of the paint style.
+- **type**: Node type (for paint, it's "PAINT_STYLE").
+- **description**: Description of the paint style.
+- ... other specific paint properties ...
+
+---
+
+Note: The properties listed are not exhaustive and may vary based on Figma's API specifics. Always refer to the official Figma documentation for comprehensive details.
